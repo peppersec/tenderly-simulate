@@ -8,6 +8,7 @@ const { TENDERLY_USER, TENDERLY_PROJECT, TENDERLY_ACCESS_KEY } = process.env;
 
 const SIMULATE_URL = `https://api.tenderly.co/api/v1/account/${TENDERLY_USER}/project/${TENDERLY_PROJECT}/simulate`;
 const TENDERLY_FORK_API = `https://api.tenderly.co/api/v1/account/${TENDERLY_USER}/project/${TENDERLY_PROJECT}/fork`;
+const TENDERLY_FORK_DELETE = `https://api.tenderly.co/api/v2/project/${TENDERLY_PROJECT}/forks`;
 
 const DAI_ADDRESS = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 const DAI_ABI = require("./abis/ERC20.json");
@@ -67,7 +68,7 @@ async function main() {
     `The multisend will require ${receipt.gasUsed} gas, which is around N ETH`
   );
 
-  // await axios.delete(`${TENDERLY_FORK_API}/${forkId}`, {}, opts);
+  await axios.delete(`${TENDERLY_FORK_DELETE}/${forkId}`, opts);
 }
 
 main();
